@@ -1,0 +1,60 @@
+#include<cstdio>
+#include<cstring>
+#include<set>
+using namespace std;
+const int maxn = 10000+5;  
+
+int in[maxn];//节点入度
+int fa[maxn];
+int findset(int x)
+{
+    return fa[x]==-1? x: fa[x]=findset(fa[x]);
+}
+void bind(int u,int v)
+{
+    int fu=findset(u);
+    int fv=findset(v);
+    if(fu!=fv)
+    {
+        fa[fu]=fv;
+    }
+}
+ 
+int main()
+{
+    int u,v;
+    int kase=0;
+    while(scanf("%d%d",&u,&v)==2 && u>=0)
+    {
+        if(u==0 && v==0)
+        {
+            printf("Case %d is a tree.\n",++kase);
+            continue;
+        }
+
+        memset(fa,-1,sizeof(fa));
+        memset(in,0,sizeof(in));
+        set<int> st;
+        do
+        {
+            st.insert(u);
+            st.insert(v);
+            ++in[v];
+            bind(u,v);
+        }while(scanf("%d%d",&u,&v)==2 && u>0 );
+
+        int cnt=0;//连通分量数
+        int root=0;//入度为0的点的数目
+        int num=0;//入读>=2点的数目
+        for(set<int>::iterator it=st.begin(); it!=st.end(); it++)  
+        {
+            if(*it == findset(*it) ) ++cnt;
+            if(in[*it]==0) ++root;
+            else if(in[*it]>=2) ++num;
+        }
+
+        if(root==1 && cnt==1 && num==0) printf("Case %d is a tree.\n",++kase);
+        else printf("Case %d is not a tree.\n",++kase);
+    }
+    return 0;
+}
