@@ -5,6 +5,7 @@ int n;//元素个数
 int c[maxn];//c[i]==A[i]+A[i-1]+...+A[i-lowbit(i)+1]
 
 //返回i的二进制最右边1的值
+//例如：6 的二进制是 1100，则返回 100
 int lowbit(int i)
 {
     return i&(-i);

@@ -16,4 +16,7 @@
             + 整数商+余数 `bi1.divideAndRemainder(bi2)[0] + bi1.divideAndRemainder(bi2)[1]`
         - 相反数 ` bi1.negate()`
         - 绝对值 `bi3.abs()`
-        
+
+## C++
+- 分治乘法：最简单的是Karatsuba乘法，一般化以后有Toom-Cook乘法
+- 快速傅里叶变换FFT：（为了避免精度问题，可以改用快速数论变换FNTT），时间复杂度O(N lgN lglgN)。

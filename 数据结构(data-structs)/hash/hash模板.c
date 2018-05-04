@@ -5,6 +5,7 @@ unsigned int BKDRHash(char *str)
     unsigned int seed = 131; // 31 131 1313 13131 131313 etc..
     unsigned int hash = 0;
 
+    //了减少碰撞，应该使该字符串中每个字符都参与哈希值计算，使其符合雪崩效应，也就是说即使改变字符串中的一个字节，也会对最终的哈希值造成较大的影响
     while (*str)
     {
         hash = hash * seed + (*str++);
