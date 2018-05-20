@@ -18,5 +18,21 @@
         - 绝对值 `bi3.abs()`
 
 ## C++
+
 - 分治乘法：最简单的是Karatsuba乘法，一般化以后有Toom-Cook乘法
+    + Karatsuba乘法 O(nlog3) 需要`-std=c++11`
+        //核心算法公式
+        
+        num1 = x1 * 10^mid + x0
+        num2 = y1 * 10^mid + y0
+        
+        z0 = x0 * y0
+        z1 = (x1 + x0) * (y1 + y0)
+        z2 = x1 * y1
+        
+        r1 = z2 * 10^(2*(len-mid))
+        r2 = (z1 - z2 -z0) * 10^(len-mid)
+        
+        num1 * num2 = r1 + r2 + z0
+
 - 快速傅里叶变换FFT：（为了避免精度问题，可以改用快速数论变换FNTT），时间复杂度O(N lgN lglgN)。
